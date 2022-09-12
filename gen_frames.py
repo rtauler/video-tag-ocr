@@ -31,9 +31,9 @@ def get_saving_frames_durations(cap, saving_fps):
     return s
 
 
-def main(video_file):
+def gen_frames(video_file):
     filename, _ = os.path.splitext(video_file)
-    filename += "-opencv"
+    # filename += "-opencv"
     # make a folder by the name of the video file
     if not os.path.isdir(filename):
         os.mkdir(filename)
@@ -68,8 +68,10 @@ def main(video_file):
             frame_duration_formatted = format_timedelta(
                 timedelta(seconds=frame_duration)
             )
+            # print(filename)
             cv2.imwrite(
-                os.path.join(filename, f"frame{frame_duration_formatted}.jpg"), frame
+                os.path.join(filename, f"{frame_duration_formatted}.jpg"),
+                frame,
             )
             # drop the duration spot from the list, since this duration spot is already saved
             try:
@@ -80,8 +82,9 @@ def main(video_file):
         count += 1
 
 
-if __name__ == "__main__":
-    import sys
+# # make it available for the console
+# if __name__ == "__main__":
+#     import sys
 
-    video_file = sys.argv[1]
-    main(video_file)
+#     video_file = sys.argv[1]
+#     main(video_file)
