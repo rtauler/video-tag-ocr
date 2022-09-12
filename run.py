@@ -10,13 +10,15 @@ for filename in os.listdir(directory):
         print(f)
         # generate dir and 3 frames
         gen_frames(f)
-
         # enter in current filename dir and delete unnecessary frames
         currentdir, _ = os.path.splitext(filename)
         print(currentdir)
 
-        os.rename(
-            directory + "/" + currentdir + "/" + "0-00-00.20.jpg",
-            directory + "/" + currentdir + ".jpg",
-        )
-        shutil.rmtree(directory + "/" + currentdir)
+        try:
+            os.rename(
+                directory + "/" + currentdir + "/" + "0-00-00.20.jpg",
+                directory + "/" + currentdir + ".jpg",
+            )
+            shutil.rmtree(directory + "/" + currentdir)
+        except:
+            print("-------------An exception occurred-------------")
